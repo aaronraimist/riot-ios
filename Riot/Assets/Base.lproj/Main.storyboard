@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -203,7 +202,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" image="tab_favourites" selectedImage="tab_favourites_selected" id="UVh-Xd-zDZ">
+                    <tabBarItem key="tabBarItem" tag="1" enabled="NO" largeContentSizeImage="favourite" selectedImage="tab_favourites_selected" id="UVh-Xd-zDZ">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="TabBarItemFavourites"/>
                         </userDefinedRuntimeAttributes>
@@ -295,7 +294,6 @@
                         <segue destination="ZlD-EU-ncw" kind="presentation" identifier="showAuth" id="fpJ-zM-Qpo"/>
                         <segue destination="pBa-To-3YT" kind="relationship" relationship="viewControllers" id="Sfs-mh-GOz"/>
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showContactDetails" id="p4M-yR-DLA"/>
-                        <segue destination="HnD-LA-psC" kind="relationship" relationship="viewControllers" id="zON-Qp-EVq"/>
                         <segue destination="IGB-jr-yFz" kind="relationship" relationship="viewControllers" id="CeF-yL-aO0"/>
                         <segue destination="HPQ-zg-lZR" kind="relationship" relationship="viewControllers" id="y12-eg-vhO"/>
                         <segue destination="SLx-Wj-p7E" kind="relationship" relationship="viewControllers" id="MLn-VT-30W"/>

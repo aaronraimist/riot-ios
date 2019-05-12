@@ -75,7 +75,6 @@
 
     // Retrieve the all view controllers
     _homeViewController = self.viewControllers[TABBAR_HOME_INDEX];
-    _favouritesViewController = self.viewControllers[TABBAR_FAVOURITES_INDEX];
     _peopleViewController = self.viewControllers[TABBAR_PEOPLE_INDEX];
     _roomsViewController = self.viewControllers[TABBAR_ROOMS_INDEX];
     _groupsViewController = self.viewControllers[TABBAR_GROUPS_INDEX];
@@ -84,13 +83,12 @@
     [_settingsBarButtonItem setAccessibilityLabel:NSLocalizedStringFromTable(@"settings_title", @"Vector", nil)];
     [_searchBarButtonIem setAccessibilityLabel:NSLocalizedStringFromTable(@"search_default_placeholder", @"Vector", nil)];
     [_homeViewController setAccessibilityLabel:NSLocalizedStringFromTable(@"title_home", @"Vector", nil)];
-    [_favouritesViewController setAccessibilityLabel:NSLocalizedStringFromTable(@"title_favourites", @"Vector", nil)];
     [_peopleViewController setAccessibilityLabel:NSLocalizedStringFromTable(@"title_people", @"Vector", nil)];
     [_roomsViewController setAccessibilityLabel:NSLocalizedStringFromTable(@"title_rooms", @"Vector", nil)];
     [_groupsViewController setAccessibilityLabel:NSLocalizedStringFromTable(@"title_groups", @"Vector", nil)];
     
     // Sanity check
-    NSAssert(_homeViewController && _favouritesViewController && _peopleViewController && _roomsViewController && _groupsViewController, @"Something wrong in Main.storyboard");
+    NSAssert(_homeViewController && _peopleViewController && _roomsViewController && _groupsViewController, @"Something wrong in Main.storyboard");
 
     // Adjust the display of the icons in the tabbar.
     for (UITabBarItem *tabBarItem in self.tabBar.items)
@@ -200,7 +198,6 @@
     mxSessionArray = nil;
     
     _homeViewController = nil;
-    _favouritesViewController = nil;
     _peopleViewController = nil;
     _roomsViewController = nil;
     _groupsViewController = nil;
@@ -245,7 +242,6 @@
         recentsDataSource = [[RecentsDataSource alloc] initWithMatrixSession:mainSession];
         
         [_homeViewController displayList:recentsDataSource];
-        [_favouritesViewController displayList:recentsDataSource];
         [_peopleViewController displayList:recentsDataSource];
         [_roomsViewController displayList:recentsDataSource];
         
@@ -255,10 +251,6 @@
         switch (self.selectedIndex)
         {
             case TABBAR_HOME_INDEX:
-                break;
-            case TABBAR_FAVOURITES_INDEX:
-                recentsDataSourceDelegate = _favouritesViewController;
-                recentsDataSourceMode = RecentsDataSourceModeFavourites;
                 break;
             case TABBAR_PEOPLE_INDEX:
                 recentsDataSourceDelegate = _peopleViewController;
@@ -341,7 +333,6 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kMXSessionStateDidChangeNotification object:nil];
         
         [_homeViewController displayList:nil];
-        [_favouritesViewController displayList:nil];
         [_peopleViewController displayList:nil];
         [_roomsViewController displayList:nil];
         
@@ -794,11 +785,6 @@
 
 - (void)refreshTabBarBadges
 {
-    // Use a middle dot to signal missed notif in favourites
-    [self setMissedDiscussionsMark:(recentsDataSource.missedFavouriteDiscussionsCount? @"\u00B7": nil)
-                      onTabBarItem:TABBAR_FAVOURITES_INDEX
-                    withBadgeColor:(recentsDataSource.missedHighlightFavouriteDiscussionsCount ? ThemeService.shared.theme.noticeColor : ThemeService.shared.theme.noticeSecondaryColor)];
-    
     // Update the badge on People and Rooms tabs
     [self setMissedDiscussionsCount:recentsDataSource.missedDirectDiscussionsCount
                        onTabBarItem:TABBAR_PEOPLE_INDEX
@@ -928,10 +914,6 @@
         else if (item.tag == TABBAR_PEOPLE_INDEX)
         {
             [self.peopleViewController scrollToNextRoomWithMissedNotifications];
-        }
-        else if (item.tag == TABBAR_FAVOURITES_INDEX)
-        {
-            [self.favouritesViewController scrollToNextRoomWithMissedNotifications];
         }
     }
 }
